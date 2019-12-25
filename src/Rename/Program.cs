@@ -8,16 +8,17 @@ namespace Rename
     {
         static void Main(string[] args)
         {
+            RenameCore rc = new RenameCore();
             if (args.Length == 0)
             {
                 //显示帮助信息
+                rc.ShowHelp();
                 return;
             }
 
             var input = args.Last();
 
             var options = args.Take(args.Length - 1).ToArray();
-            RenameCore rc = new RenameCore();
             for (int i= 0;i < options.Length;i++)
             {
                 var o = options[i];
@@ -28,6 +29,7 @@ namespace Rename
                     case "/?":
                         {
                             //显示帮助信息
+                            rc.ShowHelp();
                             isfinish = true;
                             break;
                         }

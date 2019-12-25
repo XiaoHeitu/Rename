@@ -18,7 +18,7 @@ namespace Rename
         {
             if (!File.Exists(source))
             {
-                throw new Exception("文件不存在！");
+                throw new Exception("文件不存在!");
             }
 
             Console.Write("{0} -> {1}", Path.GetFileName(source).PadRight(20), target.PadRight(20));
@@ -117,6 +117,25 @@ namespace Rename
 
                 this.FileRename(s, targetFullName);
             });
+        }
+
+        /// <summary>
+        /// 显示帮助
+        /// </summary>
+        public void ShowHelp()
+        {
+            Console.WriteLine("dotnet-rename options path");
+            Console.WriteLine();
+
+            Console.WriteLine("options:");
+            Console.WriteLine("{0} {1}","-?","Show help info");
+            Console.WriteLine("{0} {1}", "-u", "Convert all letters to uppercase");
+            Console.WriteLine("{0} {1}", "-l", "Help");
+            Console.WriteLine("{0} {1}", "-iu", "Help");
+            Console.WriteLine("{0} {1}", "-il", "Help");
+            Console.WriteLine("");
+
+            Console.WriteLine("");
         }
     }
 }

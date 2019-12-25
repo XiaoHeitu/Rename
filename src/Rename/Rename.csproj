@@ -6,6 +6,10 @@
     <PackageOutputPath>./nupkg</PackageOutputPath>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <Authors>XiaoHeitu</Authors>
+    <PackageProjectUrl>https://github.com/XiaoHeitu/Rename</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/XiaoHeitu/Rename</RepositoryUrl>
+    <Version>1.0.2</Version>
+    <ToolCommandName>dotnet-rename</ToolCommandName>
   </PropertyGroup>
 
 </Project>
