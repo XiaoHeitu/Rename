@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Rename": {
+      "commandName": "Project",
+      "commandLineArgs": "-iu e:\\js"
+    }
+  }
+}
