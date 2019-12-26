@@ -2,7 +2,7 @@
   "profiles": {
     "Rename": {
       "commandName": "Project",
-      "commandLineArgs": "-iu e:\\js"
+      "commandLineArgs": "-il E:\\EagleSight.CarSharing.Intercity/src/EagleSight.CarSharing.Intercity.Admin/wwwroot/js"
     }
   }
 }

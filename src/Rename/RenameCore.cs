@@ -16,15 +16,36 @@ namespace Rename
         /// <param name="target"></param>
         public void FileRename(string source, string target)
         {
+            source = source.Replace("\\", "/");
             if (!File.Exists(source))
             {
-                throw new Exception("文件不存在!");
+                throw new Exception("File is not found!");
             }
 
-            Console.Write("{0} -> {1}", Path.GetFileName(source).PadRight(20), target.PadRight(20));
-            Process.Start("cmd.exe", $"/c ren {source} {target}");
-            
-            Console.WriteLine("  OK!");
+            var dir = Path.GetDirectoryName(source);
+            var sfile = Path.GetFileName(source);
+
+            Console.Write("{0} -> {1}", sfile.PadRight(20), target.PadRight(20));
+            ProcessStartInfo psi = new ProcessStartInfo();
+            psi.WorkingDirectory = Path.GetDirectoryName(source);
+            psi.FileName = "cmd.exe";
+            psi.Arguments = $"/c ren {sfile} {target}";
+            psi.RedirectStandardError = true;
+            psi.UseShellExecute = false;
+
+            var p = Process.Start(psi);
+
+            p.WaitForExit();
+            var error = p.StandardError.ReadToEnd().Trim();
+            if (string.IsNullOrWhiteSpace(error))
+            {
+                Console.WriteLine("  OK!");
+            }
+            else
+            {
+                Console.WriteLine($"  Fail!{error}");
+            }
+
 
         }
 
@@ -128,14 +149,22 @@ namespace Rename
             Console.WriteLine();
 
             Console.WriteLine("options:");
-            Console.WriteLine("{0} {1}","-?","Show help info");
-            Console.WriteLine("{0} {1}", "-u", "Convert all letters to uppercase");
-            Console.WriteLine("{0} {1}", "-l", "Help");
-            Console.WriteLine("{0} {1}", "-iu", "Help");
-            Console.WriteLine("{0} {1}", "-il", "Help");
-            Console.WriteLine("");
+            Console.WriteLine("  {0} {1}", "-?".PadRight(4), "Show help info");
+            Console.WriteLine("  {0} {1}", "-u".PadRight(4), "Convert all letters to uppercase");
+            Console.WriteLine("  {0} {1}", "-l".PadRight(4), "Convert all letters to lowercase");
+            Console.WriteLine("  {0} {1}", "-iu".PadRight(4), "Convert first letter to uppercase");
+            Console.WriteLine("  {0} {1}", "-il".PadRight(4), "Convert first letter to lowercase");
+            Console.WriteLine();
 
-            Console.WriteLine("");
+            Console.WriteLine("example:");
+
+            Console.WriteLine("  Convert all files in directory");
+            Console.WriteLine("    dotnet-rename -u e:\\js");
+            Console.WriteLine();
+            Console.WriteLine("  Convert specified file");
+            Console.WriteLine("    dotnet-rename -u e:\\js\\example.js");
+            Console.WriteLine();
+            Console.WriteLine();
         }
     }
 }

@@ -8,8 +8,23 @@
     <Authors>XiaoHeitu</Authors>
     <PackageProjectUrl>https://github.com/XiaoHeitu/Rename</PackageProjectUrl>
     <RepositoryUrl>https://github.com/XiaoHeitu/Rename</RepositoryUrl>
-    <Version>1.0.2</Version>
+    <Version>1.0.4</Version>
     <ToolCommandName>dotnet-rename</ToolCommandName>
+    <PackageReleaseNotes>dotnet-rename options path
+
+options:
+  -?   Show help info
+  -u   Convert all letters to uppercase
+  -l   Convert all letters to lowercase
+  -iu  Convert first letter to uppercase
+  -il  Convert first letter to lowercase
+
+example:
+  Convert all files in directory
+    dotnet-rename -u e:\js
+
+  Convert specified file
+    dotnet-rename -u e:\js\example.js</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
